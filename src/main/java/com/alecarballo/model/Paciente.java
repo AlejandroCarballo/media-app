@@ -1,9 +1,13 @@
 package com.alecarballo.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class Paciente {
@@ -11,10 +15,29 @@ public class Paciente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idPaciente;
-	private String nombre;
+	
+	@Size(min = 3, message ="Nombres deben tener minimo 3 caracteres")
+	@Column(name = "nombres", nullable= false, length=70)
+	private String nombres;
+	
+	@Size(min = 3, message ="Apellidos deben tener minimo 3 caracteres")
+	@Column(name = "apellidos", nullable= false, length=70)
 	private String apellido;
+	
+	@Size(min = 3, max = 8, message ="DNI deben tener minimo 8 caracteres")
+	@Column(name = "dni", nullable= false, length=8)
+	private String dni;
+	
+	@Size(min = 3, max = 150, message ="Dirección deben tener minimo 3 caracteres")
+	@Column(name = "direccion", nullable= false, length=150)
 	private String direccion;
+	
+	@Size(min = 9, max = 9, message ="Telefono deben tener minimo 9 caracteres")
+	@Column(name = "telefono", nullable= false, length = 9)
 	private String telefono;
+	
+	@Email
+	@Column(name = "email", nullable= true, length = 55)
 	private String email;
 
 	public Integer getIdPaciente() {
@@ -25,12 +48,12 @@ public class Paciente {
 		this.idPaciente = idPaciente;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombres() {
+		return nombres;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
 	}
 
 	public String getApellido() {
@@ -39,6 +62,14 @@ public class Paciente {
 
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
 	public String getDireccion() {
@@ -64,5 +95,7 @@ public class Paciente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	
 
 }

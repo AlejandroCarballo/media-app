@@ -22,7 +22,7 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 		//ex.getBindingResult().getAllErrors(); Recorrerlo la lista 
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), "Validaciòn fallida",
 				request.getDescription(false));
-		return new ResponseEntity<ExceptionResponse>(exceptionResponse, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(Exception.class)
